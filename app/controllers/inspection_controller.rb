@@ -18,6 +18,21 @@ class InspectionController < ApplicationController
   end
 
   post '/inspections' do
-    #make a new object
+    binding.pry
+    details = params[:inspection]
+    inspection = Inspection.new(climb_date:details[:climb_date], comments:details[:comments])
+
+    details[:climbs].each do |rope_id, climb_num|
+      rope = Rope.find(rope_id)
+      inspection.ropes << rope
+      rope.log_climbs(climb_num)
+      # figure out how to persist this info on the inspection object
+    end
+
+    inspection.element = Element.find_by_slug(params[:element])
+    inspection.user = current_user
+    inspection.save
+    binding.pry
+    redirect "/inspections/new/#{params[:element]}"
   end
 end
