@@ -21,7 +21,7 @@ blue_rope.update(element:catwalk)
 
 #create a user
 user_details = {
-  name: "Chris Dalla Santa",
+  fullname: "Chris Dalla Santa",
   username: "chris",
   password: "p"
 }

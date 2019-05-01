@@ -1,0 +1,10 @@
+<% @elements.each do |element| %>
+  <h1><%= element.name %></h1>
+
+  <% element.ropes.each do |rope| %>
+    <p>
+      <h3><%= rope.primary_color.capitalize %> w/ <%= rope.pcord_color %></h3>
+      Total climbs = <%= rope.total_climbs %>
+    </p>
+  <% end %>
+<% end %>
