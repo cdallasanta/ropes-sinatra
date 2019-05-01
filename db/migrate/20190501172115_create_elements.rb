@@ -1,0 +1,7 @@
+class CreateElements < ActiveRecord::Migration
+  def change
+    create_table :elements do |t|
+      t.string :name
+    end
+  end
+end
