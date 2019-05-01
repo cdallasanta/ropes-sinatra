@@ -59,7 +59,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (= 4.2.5)
+  activerecord
   bcrypt
   pry
   rake
