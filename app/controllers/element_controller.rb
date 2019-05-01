@@ -1,6 +1,10 @@
 class ElementController < ApplicationController
   get '/elements' do
-    @elements = Element.all
-    erb :'elements/index'
+    if logged_in?
+      @elements = Element.all
+      erb :'elements/index'
+    else
+      redirect '/login'
+    end
   end
 end
