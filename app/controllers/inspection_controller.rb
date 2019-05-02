@@ -22,7 +22,6 @@ class InspectionController < ApplicationController
     details = params[:inspection]
     inspection = Inspection.create(climb_date:details[:climb_date], comments:details[:comments])
 
-        binding.pry
     details[:climbs].each do |rope_id, climb_num|
       inspection.climbs << Climb.create(number_of_climbs:climb_num, rope_id:rope_id, inspection_id:inspection.id)
     end

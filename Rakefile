@@ -16,6 +16,7 @@ task :restart do
   Rope.delete_all
   Inspection.delete_all
   Element.delete_all
+  Climb.delete_all
   system "rake db:seed"
 end
 
