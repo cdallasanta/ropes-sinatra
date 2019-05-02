@@ -1,0 +1,24 @@
+<h1>Edit this inspection of <%= @inspection.element.name %></h1>
+
+<form action="/inspections/<%= @inspection.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="inspection[climb_date]">Date of the inspection:</label>
+  <input type="date" name="inspection[climb_date]" value="<%= @inspection.climb_date %>"><br>
+
+  <% @inspection.climbs.each do |climb| %>
+    <label for="inspection[climbs][<%= climb.rope.id %>]"><%= climb.rope.primary_color.capitalize %> w/ <%= climb.rope.pcord_color %></label>
+    <input type="phone" name="inspection[climbs][<%= climb.rope.id %>]" value="<%= climb.number_of_climbs %>"><br>
+  <% end %>
+
+  <label for="comments">Comments</label>
+  <input type="textarea" name="inspection[comments]" value="<%= @inspection.comments %>">
+  <input type="submit" name="submit" value="Edit this Inspection">
+</form>
+
+<form action="/inspections/<%= @inspection.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" name="delete" value="Delete this record">
+</form>
+<!-- delete button -->
+<!-- TODO need a way to escape -->

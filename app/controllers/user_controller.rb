@@ -7,6 +7,15 @@ class UserController < ApplicationController
     end
   end
 
+  get '/users/:id' do
+    if current_user == User.find(params[:id])
+      erb :'/users/show'
+    else
+      #TODO flash error message
+      redirect '/'
+    end
+  end
+
   post '/users' do
     #TODO redirecting with flash message on errors
     user = User.new(params)
@@ -15,7 +24,6 @@ class UserController < ApplicationController
       session[:user_id] = user.id
       redirect '/'
     else
-      binding.pry
       redirect '/signup'
     end
   end

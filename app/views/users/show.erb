@@ -1,0 +1,25 @@
+<!-- show all inspections this user has made
+with a link to edit
+and a link to create a new inspection -->
+<h1>Hello, <%= current_user.username %> to your own page</h1>
+
+<h3>Inspections you've logged:</h3>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Element</th>
+    <th>Comments</th>
+    <th></th>
+  </tr>
+  <% current_user.inspections.each do |inspection| %>
+    <tr>
+      <td><%= inspection.climb_date %></td>
+      <td><%= inspection.element.name %></td>
+      <td><%= inspection.comments %></td>
+      <td><a href="/inspections/<%= inspection.id %>/edit">Edit or Delete</a></td>
+    </tr>
+  <% end %>
+</table>
+
+<a href="/inspections/new">Log a new inspection</a>
+<a href="/">Homepage</a>

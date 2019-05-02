@@ -29,7 +29,41 @@ class InspectionController < ApplicationController
     inspection.element = Element.find_by_slug(params[:element])
     inspection.user = current_user
     inspection.save
-    # make flash message about the inspection just created
+    # TODO make flash message about the inspection just created
     redirect "/inspections/new/#{params[:element]}"
+  end
+
+  get '/inspections/:id/edit' do
+    if current_user == Inspection.find(params[:id]).user
+      @inspection = Inspection.find(params[:id])
+      erb :'/inspections/edit'
+    else
+      #TODO error message
+      redirect '/'
+    end
+  end
+
+  patch '/inspections/:id' do
+    inspection = Inspection.find(params[:id])
+    details = params[:inspection]
+    inspection.update(climb_date:details[:climb_date], comments:details[:comments])
+
+    #update the climbs
+    details[:climbs].each do |rope_id, climb_num|
+      climb = inspection.climbs.detect {|climb| climb.rope_id = rope_id}
+      climb.update(number_of_climbs:climb_num)
+    end
+
+    redirect "users/#{current_user.id}"
+  end
+
+  delete '/inspections/:id' do
+    inspection = Inspection.find(params[:id])
+    inspection.climbs.each do |climb|
+      climb.destroy
+    end
+    inspection.destroy
+
+    redirect "/users/#{current_user.id}"
   end
 end

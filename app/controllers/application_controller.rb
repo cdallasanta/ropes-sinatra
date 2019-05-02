@@ -3,6 +3,7 @@ class ApplicationController < Sinatra::Base
   configure do
     set :views, './app/views'
     set :public_folder, './public'
+    set :method_override, true
     set :session_secret, ENV["session_secret"]
     enable :sessions
   end
