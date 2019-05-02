@@ -58,6 +58,7 @@ input[type="submit"] {
 
 h1 {
   margin: auto auto 40px auto;
+  color:red;
 }
 
 
@@ -65,4 +66,14 @@ h1 {
  * media queries for larger screens
 */
 
-/*above 650, fix font size and wrapper*/
+@media only screen and (min-width: 750px) {
+  #wrapper {
+    margin: 70px auto;
+    width: 600px;
+    padding: 5%;
+  }
+
+  body {
+    font-size: 25px;
+  }
+}
