@@ -3,5 +3,5 @@ class Inspection < ActiveRecord::Base
   belongs_to :user
   has_many :climbs
 
-  # validates date
+  validates_presence_of :climb_date, :user_id, :element_id
 end
