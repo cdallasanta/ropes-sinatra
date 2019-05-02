@@ -1,7 +1,7 @@
 body {
-  background-color: red;
   font-size: 50px;
-	background: url("images/background.") no-repeat center center fixed;
+	background: url("/images/background.jpg") darkgreen no-repeat center center fixed;
+  background-color: darkgreen;
 }
 
 #wrapper {
