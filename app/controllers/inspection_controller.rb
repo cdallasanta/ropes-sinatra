@@ -18,11 +18,12 @@ class InspectionController < ApplicationController
   end
 
   post '/inspections' do
+
     binding.pry
     details = params[:inspection]
     inspection = Inspection.new(climb_date:details[:climb_date], comments:details[:comments])
 
-    details[:climbs].each do |rope_id, climb_num|
+    details[:climbs][0].each do |rope_id, climb_num|
       rope = Rope.find(rope_id)
       inspection.ropes << rope
       rope.log_climbs(climb_num)
@@ -30,9 +31,10 @@ class InspectionController < ApplicationController
     end
 
     inspection.element = Element.find_by_slug(params[:element])
+
     inspection.user = current_user
     inspection.save
-    binding.pry
+    # make flash message about the inspection just made
     redirect "/inspections/new/#{params[:element]}"
   end
 end

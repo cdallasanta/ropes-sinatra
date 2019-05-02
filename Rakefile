@@ -18,3 +18,7 @@ task :restart do
   Element.delete_all
   system "rake db:seed"
 end
+
+task :console do
+  Pry.start
+end
