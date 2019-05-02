@@ -1,17 +1,25 @@
+html {
+  height: 100%;
+  background: url("/images/background.jpg") darkgreen no-repeat center center fixed;
+  background-size: cover;
+}
+
 body {
   font-size: 50px;
-	background: url("/images/background.jpg") darkgreen no-repeat center center fixed;
-  background-color: darkgreen;
 }
 
 #wrapper {
   margin: 5vh auto;
   width: 80%;
-  background-color: powderblue;
-  border:1px solid black;
-
+  background-color: beige;
+  border:15px solid #280F02;
   padding: 5%;
 }
+
+
+/*
+ * form settings
+ */
 
 form {
   display:flex;
@@ -37,9 +45,16 @@ input[type="password"] {
   flex: 1;
   font-size: .85em;
 }
-
 input[type="submit"] {
   margin-top: 30px;
   width: 30%;
   font-size: .85em;
+}
+
+/*
+ * headings
+*/
+
+h1 {
+  margin: auto auto 40px auto;
 }
