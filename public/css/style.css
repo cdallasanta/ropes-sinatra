@@ -59,3 +59,10 @@ input[type="submit"] {
 h1 {
   margin: auto auto 40px auto;
 }
+
+
+/*
+ * media queries for larger screens
+*/
+
+/*above 650, fix font size and wrapper*/
