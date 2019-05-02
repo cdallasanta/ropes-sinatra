@@ -3,11 +3,12 @@
 <form action="/inspections" method="post">
   <input type="hidden" name="element" value="<%= @element.slug %>">
 
-  <label for="inspection[climb_date]">Date of the inspection:</label>
-  <input type="date" name="inspection[climb_date]"><br>
+  <label for="inspection[climb_date]">Inspection Date:</label>
+  <input type="date" name="inspection[climb_date]">
+  <div class="two-columns"><p><strong>Input the number of climbs:</strong></p></div>
   <% @element.ropes.each do |rope| %>
     <label for="inspection[climbs][<%= rope.id %>]"><%= rope.primary_color.capitalize %> w/ <%= rope.pcord_color %></label>
-    <input type="phone" name="inspection[climbs][<%= rope.id %>]"><br>
+    <input type="phone" name="inspection[climbs][<%= rope.id %>]">
   <% end %>
   <label for="comments">Comments</label>
   <input type="textarea" name="inspection[comments]">

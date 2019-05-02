@@ -22,35 +22,36 @@ body {
  */
 
 form {
-  display:flex;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
+  display:grid;
+  grid-template-columns: 50% 50%;
+  grid-auto-rows: min-content;
+  margin-bottom: 20px;
 }
 
 label {
   height: 60px;
   margin: 10px 0px;
+  font-size: 90%;
 }
 
 input {
   height: 60px;
   margin: 10px 0px 0px 10px;
+  font-size: .85em;
+  width: 100%;
 }
 
-input[type="text"] {
-  flex: 1;
-  font-size: .85em;
-}
-input[type="password"] {
-  flex: 1;
-  font-size: .85em;
-}
 input[type="submit"] {
-  margin-top: 30px;
-  width: 30%;
-  font-size: .85em;
+  margin: 20px auto 0px auto;
+  height:auto;
+  width: 40%;
+  grid-column-end:span 2;
+  padding: 15px;
 }
 
+.two-columns {
+  grid-column-end:span 2;
+}
 /*
  * headings
 */

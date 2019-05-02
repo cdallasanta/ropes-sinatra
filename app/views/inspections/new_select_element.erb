@@ -1,5 +1,5 @@
 <h1>Log a new inspection</h1>
-<h3>Select the element to log an inspection for:</h3>
+<h3>Select the element:</h3>
 <ul>
   <% @elements.each do |element| %>
     <li><a href="/inspections/new/<%= element.slug %>"><%= element.name %></a></li>
