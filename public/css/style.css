@@ -1,6 +1,7 @@
 body {
   background-color: red;
-  font-size: 70px;
+  font-size: 50px;
+	background: url("images/background.") no-repeat center center fixed;
 }
 
 #wrapper {
@@ -13,23 +14,32 @@ body {
 }
 
 form {
-  display:grid;
-  grid-template-columns: 50% 50%;
-  grid-auto-flow: column;
+  display:flex;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 label {
   height: 60px;
-  width: 40%;
+  margin: 10px 0px;
 }
- 
+
 input {
   height: 60px;
-  width: 40%;
+  margin: 10px 0px 0px 10px;
+}
+
+input[type="text"] {
+  flex: 1;
+  font-size: .85em;
+}
+input[type="password"] {
+  flex: 1;
+  font-size: .85em;
 }
 
 input[type="submit"] {
-  height: 60px;
-  width: 100%;
-  font-size: .7em;
+  margin-top: 30px;
+  width: 30%;
+  font-size: .85em;
 }
