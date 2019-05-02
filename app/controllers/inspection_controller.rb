@@ -19,22 +19,18 @@ class InspectionController < ApplicationController
 
   post '/inspections' do
 
-    binding.pry
     details = params[:inspection]
-    inspection = Inspection.new(climb_date:details[:climb_date], comments:details[:comments])
+    inspection = Inspection.create(climb_date:details[:climb_date], comments:details[:comments])
 
-    details[:climbs][0].each do |rope_id, climb_num|
-      rope = Rope.find(rope_id)
-      inspection.ropes << rope
-      rope.log_climbs(climb_num)
-      # figure out how to persist this info on the inspection object
+        binding.pry
+    details[:climbs].each do |rope_id, climb_num|
+      inspection.climbs << Climb.create(number_of_climbs:climb_num, rope_id:rope_id, inspection_id:inspection.id)
     end
 
     inspection.element = Element.find_by_slug(params[:element])
-
     inspection.user = current_user
     inspection.save
-    # make flash message about the inspection just made
+    # make flash message about the inspection just created
     redirect "/inspections/new/#{params[:element]}"
   end
 end
