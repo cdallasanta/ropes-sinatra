@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     def check_logged_in
       if !logged_in?
         flash[:type] = "error"
-        flash[:message] << "You must be logged in to view that page"
+        flash[:message] = ["You must be logged in to view that page"]
         redirect '/login'
       end
     end

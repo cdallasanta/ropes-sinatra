@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   get '/signup' do
     binding.pry
-    
+
     if logged_in?
       redirect '/login'
     else
@@ -31,7 +31,7 @@ class UserController < ApplicationController
       user.errors.messages.each do |attr, error_message|
         flash[:message] << error_message[0]
       end
-
+binding.pry
       redirect '/signup'
     end
   end
