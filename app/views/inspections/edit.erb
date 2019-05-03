@@ -8,17 +8,22 @@
 
   <% @inspection.climbs.each do |climb| %>
     <label for="inspection[climbs][<%= climb.rope.id %>]"><%= climb.rope.primary_color.capitalize %> w/ <%= climb.rope.pcord_color %></label>
-    <input type="phone" name="inspection[climbs][<%= climb.rope.id %>]" value="<%= climb.number_of_climbs %>">
+    <input type="tel" name="inspection[climbs][<%= climb.rope.id %>]" value="<%= climb.number_of_climbs %>">
   <% end %>
 
   <label for="comments">Comments:</label>
   <textarea name="inspection[comments]" value="<%= @inspection.comments %>"></textarea>
   <input type="submit" name="submit" value="Edit this Inspection">
+
+  <!-- delete button -->
+  <form action="/inspections/<%= @inspection.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="delete" value="Delete this record">
+  </form>
 </form>
 
-<form action="/inspections/<%= @inspection.id %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" name="delete" value="Delete this record">
-</form>
-<!-- delete button -->
-<!-- TODO need a way to escape -->
+
+<!-- return link -->
+<p>
+<a href="/">Homepage</a>
+</p>

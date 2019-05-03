@@ -5,14 +5,17 @@
 
   <label for="inspection[climb_date]">Inspection Date:</label>
   <input type="date" name="inspection[climb_date]">
-  <div class="two-columns"><p><strong>Input the number of climbs:</strong></p></div>
-  <% @element.ropes.each do |rope| %>
-    <label for="inspection[climbs][<%= rope.id %>]"><%= rope.primary_color.capitalize %> w/ <%= rope.pcord_color %></label>
-    <input type="phone" name="inspection[climbs][<%= rope.id %>]">
-  <% end %>
   <label for="comments">Comments:</label>
   <textarea name="inspection[comments]"></textarea>
-  <input type="submit" name="submit" value="Log Inspection">
+  <div class="two-columns"><p><strong>Input the number of climbs for each rope:</strong></p></div>
+  <% @element.ropes.each do |rope| %>
+    <label for="inspection[climbs][<%= rope.id %>]"><%= rope.primary_color.capitalize %> w/ <%= rope.pcord_color %></label>
+    <input type="tel" name="inspection[climbs][<%= rope.id %>]">
+  <% end %>
+  <input type="submit" class="two-columns" name="submit" value="Log Inspection">
 </form>
 
-<!-- TODO need a way to escape -->
+<!-- return link -->
+<p>
+<a href="/">Homepage</a>
+</p>

@@ -12,7 +12,7 @@ body {
   margin: 5vh auto;
   width: 80%;
   background-color: beige;
-  border:15px solid #280F02;
+  border:15px solid #2F1302;
   padding: 5%;
 }
 
@@ -51,7 +51,6 @@ input[type="submit"] {
   margin: 20px auto 0px auto;
   height:auto;
   width: 40%;
-  grid-column-end:span 2;
   padding: 15px;
 }
 
@@ -75,6 +74,28 @@ h1 {
   font-size: 75%;
 }
 
+.success {
+
+}
+
+.retire-form {
+  margin: auto;
+  display: block;
+}
+
+input[type="submit"].btn-link {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #0000EE;
+    padding: 0;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: 75%;
+    margin: auto;
+}
+
 /*
  * media queries for larger screens
 */
@@ -83,21 +104,17 @@ h1 {
     (min-device-width : 500px) {
   label {
     height: auto;
-    margin: 10px 0px;
     font-size: 100%;
+    padding-left: 40px;
   }
 
   input {
     height: auto;
-    margin: 10px 0px 0px 10px;
-    font-size: .85em;
-    width: 100%;
   }
 
   input[type="submit"] {
     height: auto;
     width: auto;
-    grid-column-end:span 2;
     padding: auto 10px;
   }
 

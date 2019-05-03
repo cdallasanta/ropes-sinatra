@@ -4,10 +4,16 @@
   <% element.ropes.each do |rope| %>
     <p>
       <h3><%= rope.primary_color.capitalize %> w/ <%= rope.pcord_color %></h3>
-      Total climbs = <%= rope.total_climbs %>
-      <!-- TODO link to retire rope -->
+      Total climbs = <%= rope.total_climbs %><br>
+      <form action="/ropes/<%=rope.id%>" method="post" class="retire-form">
+        <input type="hidden" name="_method" value="patch">
+        <input type="submit" class="btn-link" name="retire" value="Retire this rope">
+      </form>
     </p>
   <% end %>
 <% end %>
 
-<!-- TODO need a way to escape -->
+<!-- return link -->
+<p>
+<a href="/">Homepage</a>
+</p>
