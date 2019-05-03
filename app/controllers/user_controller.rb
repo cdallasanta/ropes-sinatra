@@ -1,5 +1,7 @@
 class UserController < ApplicationController
   get '/signup' do
+    binding.pry
+    
     if logged_in?
       redirect '/login'
     else
@@ -38,6 +40,7 @@ class UserController < ApplicationController
     if logged_in?
       redirect '/'
     else
+      binding.pry
       erb :"/users/login"
     end
   end
@@ -51,15 +54,11 @@ class UserController < ApplicationController
     elsif user == nil
       flash[:type] = "error"
       flash[:message] = ["Cannot find a user by that name"]
-binding.pry
+
       redirect '/login'
     else
-      binding.pry
       flash[:type] = "error"
-      flash[:message] = []
-      user.errors.messages.each do |attr, error_message|
-        flash[:message] << error_message[0]
-      end
+      flash[:message] = ["Password is incorrect"]
 
       redirect '/login'
     end
