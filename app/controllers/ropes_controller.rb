@@ -1,13 +1,13 @@
 class RopesController < ApplicationController
+  # this route looks like a patch, but it actually "deletes" the rope,
+  # but persists its data so a future admin can still access
+  # retired ropes
   patch '/ropes/:id' do
     check_logged_in
 
     rope = Rope.find(params[:id])
     session[:element] = rope.element
     rope.update(element:nil)
-
-
-    binding.pry
 
     redirect '/ropes/new'
   end
@@ -26,6 +26,9 @@ class RopesController < ApplicationController
     rope.save
 
     session[:element] = nil
+
+    flash[:type] = "success"
+    flash[:message] = ["Rope created successfully"]
     redirect '/elements'
   end
 end

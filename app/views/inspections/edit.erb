@@ -13,7 +13,7 @@
 
   <label for="comments">Comments:</label>
   <textarea name="inspection[comments]" value="<%= @inspection.comments %>"></textarea>
-  <input type="submit" name="submit" value="Edit this Inspection">
+  <input type="submit" name="submit" value="Save changes">
 
   <!-- delete button -->
   <form action="/inspections/<%= @inspection.id %>" method="post">

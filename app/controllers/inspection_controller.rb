@@ -24,9 +24,21 @@ class InspectionController < ApplicationController
 
     inspection.element = Element.find_by_slug(params[:element])
     inspection.user = current_user
-    inspection.save
-    # TODO make flash message about the inspection just created
-    redirect "/inspections/new/#{params[:element]}"
+
+    if inspection.save
+      flash[:type] = "success"
+      flash[:message] = ["Inspection logged successfully"]
+
+      redirect "/inspections/new/#{params[:element]}"
+    else
+      flash[:type] = "error"
+      flash[:message] = []
+      inspection.errors.messages.each do |attr, error_message|
+        flash[:message] << error_message[0]
+      end
+
+      redirect "/inspections/new/#{params[:element]}"
+    end
   end
 
   get '/inspections/:id/edit' do
@@ -34,7 +46,8 @@ class InspectionController < ApplicationController
       @inspection = Inspection.find(params[:id])
       erb :'/inspections/edit'
     else
-      #TODO error message
+      flash[:type] = "error"
+      flash[:message] = "You must be signed in as that inspections' creator to view edit it"
       redirect '/'
     end
   end
@@ -50,6 +63,9 @@ class InspectionController < ApplicationController
       climb.update(number_of_climbs:climb_num)
     end
 
+    flash[:type] = "success"
+    flash[:message] = ["Inspection successfully edited"]
+
     redirect "users/#{current_user.id}"
   end
 
@@ -59,6 +75,9 @@ class InspectionController < ApplicationController
       climb.destroy
     end
     inspection.destroy
+
+    flash[:type] = "success"
+    flash[:message] = ["Inspection successfully deleted"]
 
     redirect "/users/#{current_user.id}"
   end

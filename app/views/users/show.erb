@@ -1,25 +1,27 @@
 <!-- show all inspections this user has made
 with a link to edit
 and a link to create a new inspection -->
-<h1>Hello, <%= current_user.username %> to your own page</h1>
+<h1>Activity by <%= current_user.username %></h1>
 
 <h3>Inspections you've logged:</h3>
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Element</th>
-    <th>Comments</th>
-    <th></th>
-  </tr>
-  <% current_user.inspections.each do |inspection| %>
+<div class="table-overflow">
+  <table>
     <tr>
-      <td><%= inspection.climb_date %></td>
-      <td><%= inspection.element.name %></td>
-      <td><%= inspection.comments %></td>
-      <td><a href="/inspections/<%= inspection.id %>/edit">Edit or Delete</a></td>
+      <th>Date</th>
+      <th>Element</th>
+      <th>Comments</th>
+      <th></th>
     </tr>
-  <% end %>
-</table>
+    <% current_user.inspections.each do |inspection| %>
+      <tr>
+        <td nowrap><%= inspection.climb_date %></td>
+        <td><%= inspection.element.name %></td>
+        <td><%= inspection.comments %></td>
+        <td align="center"><a href="/inspections/<%= inspection.id %>/edit">Edit</a></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 <a href="/inspections/new">Log a new inspection</a>
 <a href="/">Homepage</a>
