@@ -1,0 +1,10 @@
+<h1>Create a replacement rope for <%= session[:element].name %></h1>
+
+<form action="/ropes" method="post">
+  <label for="primary_color">Primary Color:</label>
+  <input type="text" name="primary_color">
+  <label for="pcord_color">Pcord Color:</label>
+  <input type="text" name="pcord_color">
+
+  <input type="submit" name="submit" class="two-columns" value="Create Rope">
+</form>
