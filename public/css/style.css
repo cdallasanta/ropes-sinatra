@@ -11,7 +11,7 @@ body {
 #wrapper {
   margin: 5vh auto;
   width: 80%;
-  background-color: beige;
+  background-color: #EADAC8;
   border:15px solid #2F1302;
   padding: 5%;
 }
@@ -57,17 +57,12 @@ input[type="submit"] {
 .two-columns {
   grid-column-end:span 2;
 }
+
 /*
- * misc
+ * flash messages
 */
 
-h1 {
-  margin: auto auto 40px auto;
-}
-
 .error {
-  /*color is firebrick,
-  using rgb for consistency with the background color*/
   background-color: rgb(178, 34, 34, .1);
   border: 2px solid rgb(178,34,34);
   color: rgb(178,34,34);
@@ -75,7 +70,18 @@ h1 {
 }
 
 .success {
+  background-color: rgb(105, 153, 36, .1);
+  border: 2px solid rgb(105, 153, 36);
+  color: rgb(105, 153, 36);
+  font-size: 75%;
+}
 
+/*
+ * misc fixes
+*/
+
+h1 {
+  margin: auto auto 40px auto;
 }
 
 .retire-form {

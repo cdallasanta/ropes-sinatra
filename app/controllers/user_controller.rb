@@ -18,7 +18,6 @@ class UserController < ApplicationController
   end
 
   post '/users' do
-    #TODO redirecting with flash message on errors
     user = User.new(params)
 
     if user.save && user.username != ""
@@ -44,13 +43,24 @@ class UserController < ApplicationController
   end
 
   post '/login' do
-    #TODO flash message for errors
     user = User.find_by(username:params[:username])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect '/'
+    elsif user == nil
+      flash[:type] = "error"
+      flash[:message] = ["Cannot find a user by that name"]
+binding.pry
+      redirect '/login'
     else
+      binding.pry
+      flash[:type] = "error"
+      flash[:message] = []
+      user.errors.messages.each do |attr, error_message|
+        flash[:message] << error_message[0]
+      end
+
       redirect '/login'
     end
   end
