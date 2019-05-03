@@ -11,7 +11,8 @@ class UserController < ApplicationController
     if current_user == User.find(params[:id])
       erb :'/users/show'
     else
-      #TODO flash error message
+      flash[:type] = "error"
+      flash[:message] = "You must be signed in as that user to view their page"
       redirect '/'
     end
   end
@@ -24,6 +25,12 @@ class UserController < ApplicationController
       session[:user_id] = user.id
       redirect '/'
     else
+      flash[:type] = "error"
+      flash[:message] = []
+      user.errors.messages.each do |attr, error_message|
+        flash[:message] << error_message[0]
+      end
+
       redirect '/signup'
     end
   end

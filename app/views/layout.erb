@@ -7,9 +7,18 @@
   </head>
   <body>
     <div id="wrapper">
+      <% if flash[:message] %>
+        <div class="<%= flash[:type] %>">
+          <ul>
+            <% flash[:message].each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
       <%= yield %>
- 
+
     </div>
   </body>
 </html>

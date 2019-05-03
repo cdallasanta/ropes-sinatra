@@ -1,11 +1,13 @@
-class ApplicationController < Sinatra::Base
+require 'rack-flash'
 
+class ApplicationController < Sinatra::Base
   configure do
     set :views, './app/views'
     set :public_folder, './public'
     set :method_override, true
     set :session_secret, ENV["session_secret"]
     enable :sessions
+    use Rack::Flash
   end
 
   get '/' do

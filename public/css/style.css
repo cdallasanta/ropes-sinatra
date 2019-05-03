@@ -59,13 +59,21 @@ input[type="submit"] {
   grid-column-end:span 2;
 }
 /*
- * headings
+ * misc
 */
 
 h1 {
   margin: auto auto 40px auto;
 }
 
+.error {
+  /*color is firebrick,
+  using rgb for consistency with the background color*/
+  background-color: rgb(178, 34, 34, .1);
+  border: 2px solid rgb(178,34,34);
+  color: rgb(178,34,34);
+  font-size: 75%;
+}
 
 /*
  * media queries for larger screens
@@ -105,10 +113,14 @@ h1 {
   #wrapper {
     margin: 70px auto;
     width: 600px;
-    padding: 5%;
+    padding: 3%;
   }
 
   body {
     font-size: 20px;
+  }
+
+  .error {
+    font-size: 80%;
   }
 }

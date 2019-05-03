@@ -4,11 +4,11 @@
   <input type="hidden" name="_method" value="patch">
 
   <label for="inspection[climb_date]">Date of the inspection:</label>
-  <input type="date" name="inspection[climb_date]" value="<%= @inspection.climb_date %>"><br>
+  <input type="date" name="inspection[climb_date]" value="<%= @inspection.climb_date %>">
 
   <% @inspection.climbs.each do |climb| %>
     <label for="inspection[climbs][<%= climb.rope.id %>]"><%= climb.rope.primary_color.capitalize %> w/ <%= climb.rope.pcord_color %></label>
-    <input type="phone" name="inspection[climbs][<%= climb.rope.id %>]" value="<%= climb.number_of_climbs %>"><br>
+    <input type="phone" name="inspection[climbs][<%= climb.rope.id %>]" value="<%= climb.number_of_climbs %>">
   <% end %>
 
   <label for="comments">Comments:</label>
