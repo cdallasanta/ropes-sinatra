@@ -10,8 +10,8 @@
     <label for="inspection[climbs][<%= rope.id %>]"><%= rope.primary_color.capitalize %> w/ <%= rope.pcord_color %></label>
     <input type="phone" name="inspection[climbs][<%= rope.id %>]">
   <% end %>
-  <label for="comments">Comments</label>
-  <input type="textarea" name="inspection[comments]">
+  <label for="comments">Comments:</label>
+  <textarea name="inspection[comments]"></textarea>
   <input type="submit" name="submit" value="Log Inspection">
 </form>
 
