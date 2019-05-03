@@ -20,6 +20,8 @@ class UserController < ApplicationController
   post '/users' do
     user = User.new(params)
 
+    # if successful, move to homepage, otherwise, try again
+    # with errors displayed
     if user.save && user.username != ""
       session[:user_id] = user.id
       redirect '/'

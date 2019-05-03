@@ -6,6 +6,8 @@ class RopesController < ApplicationController
     check_logged_in
 
     rope = Rope.find(params[:id])
+    # grab on to the element for creating a new rope
+    # and dissasociate this rope from the element
     session[:element] = rope.element
     rope.update(element:nil)
 
@@ -23,12 +25,22 @@ class RopesController < ApplicationController
     rope.element = session[:element]
     rope.primary_color = params[:primary_color].downcase
     rope.pcord_color = params[:pcord_color]
-    rope.save
 
-    session[:element] = nil
+    if rope.save
+      # if successful, forget the element and move on
+      session[:element] = nil
 
-    flash[:type] = "success"
-    flash[:message] = ["Rope created successfully"]
-    redirect '/elements'
+      flash[:type] = "success"
+      flash[:message] = ["Rope created successfully"]
+      redirect '/elements'
+    else
+      flash[:type] = "error"
+      flash[:message] = []
+      rope.errors.messages.each do |attr, error_message|
+        flash[:message] << error_message[0]
+      end
+
+      redirect '/ropes/new'
+    end
   end
 end

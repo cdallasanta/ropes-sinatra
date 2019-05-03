@@ -27,6 +27,8 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
+    # called on some of the deeper routes in case someone who's not signed in
+    # goes to a url manually
     def check_logged_in
       if !logged_in?
         flash[:type] = "error"

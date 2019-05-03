@@ -122,7 +122,7 @@ form.retire-form {
 
 input[type="submit"].retire-btn {
   margin: auto;
-  padding: auto;
+  padding: 0px;
   padding-left: 15px;
 }
 
