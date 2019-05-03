@@ -88,7 +88,7 @@ input[type="submit"] {
 }
 
 /*
- * misc
+ * misc fixes
 */
 
 h1 {
@@ -98,6 +98,38 @@ h1 {
 .two-columns {
   grid-column-end:span 2;
 }
+
+.btn-link {
+  background:none;
+  border:none;
+  padding:0;
+  font: inherit;
+  cursor: pointer;
+  color:#8f1f08;
+	line-height:normal;
+	text-decoration:underline;
+  font-size: 80%;
+}
+
+a {
+  color:#8f1f08;
+}
+
+form.retire-form {
+  display:block;
+  margin:auto;
+}
+
+input[type="submit"].retire-btn {
+  margin: auto;
+  padding: auto;
+  padding-left: 15px;
+}
+
+
+/*
+ * flash messages
+*/
 
 .error {
   background-color: rgb(178, 34, 34, .1);
