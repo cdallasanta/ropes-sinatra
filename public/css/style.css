@@ -71,7 +71,8 @@ h1 {
  * media queries for larger screens
 */
 
-@media only screen and (min-width: 1000px) {
+@media only screen and
+    (min-device-width : 500px) {
   label {
     height: auto;
     margin: 10px 0px;
@@ -93,8 +94,13 @@ h1 {
   }
 
   body {
-    font-size: 20px;
+    font-size: 23px;
   }
+}
+
+@media only screen and
+    (min-width: 775px) and
+    (min-device-width : 500px) {
 
   #wrapper {
     margin: 70px auto;
@@ -102,7 +108,7 @@ h1 {
     padding: 5%;
   }
 
-  h1 {
-    color:red;
+  body {
+    font-size: 20px;
   }
 }
