@@ -58,13 +58,37 @@ input[type="submit"] {
 
 h1 {
   margin: auto auto 40px auto;
-  color:red;
 }
 
 
 /*
  * media queries for larger screens
 */
+@media only screen and (min-width: 600px) {
+  label {
+    height: auto;
+    margin: 10px 0px;
+    font-size: 100%;
+  }
+
+  input {
+    height: auto;
+    margin: 10px 0px 0px 10px;
+    font-size: .85em;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    height: auto;
+    width: auto;
+    grid-column-end:span 2;
+    padding: auto 10px;
+  }
+
+  body {
+    font-size: 25px;
+  }
+}
 
 @media only screen and (min-width: 750px) {
   #wrapper {
@@ -74,6 +98,6 @@ h1 {
   }
 
   body {
-    font-size: 25px;
+    font-size: 20px;
   }
 }
