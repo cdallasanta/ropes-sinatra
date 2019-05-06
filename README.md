@@ -1,12 +1,12 @@
 # ropes-sinatra
 Online ropes log for challenge courses built using Sinatra. Users can create inspections each day that track the number of uses their climbing ropes receive, as well as retire and replace ropes on their courses
 
-###Future features
+### Future features
 Creation and editing of elements
 Admin role for course managers to edit elements, access all inspection reports, and add/remove users
 Users editing their own information
 
-##Installation/usage
+## Installation/usage
 To host this locally, run `bundle install`, then `shotgun`, and go to the address provided by shotgun. You can create a user account from the '/signup' route, or by following the link from the login redirect.
 
 ## Contributing
