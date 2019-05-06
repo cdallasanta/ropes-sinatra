@@ -1,4 +1,4 @@
-class CreateInspections < ActiveRecord::Migration
+class CreateInspections < ActiveRecord::Migration[5.1]
   def change
     create_table :inspections do |t|
       t.date :climb_date
