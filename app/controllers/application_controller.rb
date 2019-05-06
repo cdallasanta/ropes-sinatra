@@ -1,5 +1,6 @@
-require 'rack-flash'
-# require 'sinatra/flash'
+# require 'rack-flash'
+require 'sinatra/base'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
   configure do
@@ -8,7 +9,7 @@ class ApplicationController < Sinatra::Base
     set :method_override, true
     set :session_secret, ENV["session_secret"]
     enable :sessions
-    use Rack::Flash
+    register Sinatra::Flash
   end
 
   get '/' do

@@ -6,7 +6,7 @@ class RopesController < ApplicationController
     check_logged_in
 
     rope = Rope.find(params[:id])
-    # grab on to the element for creating a new rope
+    # grab on to the element for creating a new rope by putting it in the cookie
     # and dissasociate this rope from the element
     session[:element] = rope.element
     rope.update(element:nil)
@@ -34,11 +34,13 @@ class RopesController < ApplicationController
       flash[:message] = ["Rope created successfully"]
       redirect '/elements'
     else
+      # ropes must have a primary and pcod color
       flash[:type] = "error"
-      flash[:message] = []
+      all_errors = []
       rope.errors.messages.each do |attr, error_message|
-        flash[:message] << error_message[0]
+        all_errors << error_message[0]
       end
+      flash[:message] = all_errors
 
       redirect '/ropes/new'
     end

@@ -9,6 +9,7 @@ class InspectionController < ApplicationController
   end
 
   # this is the "real" /inspections/new, the upper one lets the user select an element
+  # which populates the new form with the rope names
   get '/inspections/new/:element_slug' do
     check_logged_in
 
@@ -22,6 +23,7 @@ class InspectionController < ApplicationController
 
     #create a Climb object for each rope that was used, associating it with the rope
     details[:climbs].each do |rope_id, climb_num|
+      climb_num = 0 if climb_num == nil
       inspection.climbs << Climb.create(number_of_climbs:climb_num, rope_id:rope_id, inspection_id:inspection.id)
     end
 
@@ -68,6 +70,7 @@ class InspectionController < ApplicationController
     #update the climbs
     details[:climbs].each do |rope_id, climb_num|
       climb = inspection.climbs.detect {|climb| climb.rope_id = rope_id}
+      climb_num = 0 if climb_num == nil
       climb.update(number_of_climbs:climb_num)
     end
 
