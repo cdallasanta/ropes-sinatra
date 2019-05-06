@@ -65,15 +65,15 @@ class InspectionController < ApplicationController
     details = params[:inspection]
     inspection.update(climb_date:details[:climb_date], comments:details[:comments])
 
-# TODO fix if they try to remove the date
-
     #update the climbs
     details[:climbs].each do |rope_id, climb_num|
-      climb = inspection.climbs.detect {|climb| climb.rope_id = rope_id}
+      binding.pry
+      climb = inspection.climbs.detect {|climb| climb.rope_id == rope_id.to_i}
       climb_num = 0 if climb_num == nil
-      climb.update(number_of_climbs:climb_num)
+      climb.update(number_of_climbs:climb_num.to_i)
     end
 
+binding.pry
     flash[:type] = "success"
     flash[:message] = ["Inspection successfully edited"]
 

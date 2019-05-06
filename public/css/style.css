@@ -87,6 +87,17 @@ input[type="submit"] {
   padding: 15px;
 }
 
+form.retire-form {
+  display:block;
+  margin:auto;
+}
+
+input[type="submit"].retire-btn {
+  margin: auto;
+  padding: 0px;
+  padding-left: 15px;
+}
+
 /*
  * misc fixes
 */
@@ -115,17 +126,10 @@ a {
   color:#8f1f08;
 }
 
-form.retire-form {
-  display:block;
-  margin:auto;
+ul {
+  margin: .5em auto;
+  padding: auto 20px;
 }
-
-input[type="submit"].retire-btn {
-  margin: auto;
-  padding: 0px;
-  padding-left: 15px;
-}
-
 
 /*
  * flash messages
