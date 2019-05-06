@@ -47,6 +47,8 @@ class UserController < ApplicationController
   post '/login' do
     user = User.find_by(username:params[:username])
 
+
+    #flash messages aren't currently working, redirect works
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect '/'
