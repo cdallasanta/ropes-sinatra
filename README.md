@@ -3,8 +3,10 @@ Online ropes log for challenge courses built using Sinatra. Users can create ins
 
 ### Future features
 Creation and editing of elements<br>
-Admin role for course managers to edit elements, access all inspection reports, and add/remove users<br>
-Users editing their own information
+Admin role for course managers to edit elements, access all inspection reports, and add/remove users in bulk<br>
+Users editing their own information<br>
+Fleshing out inspection to cover the whole pre-use inspection process
+
 
 ## Installation/usage
 To host this locally, run `bundle install`, then `shotgun`, and go to the address provided by shotgun. You can create a user account from the '/signup' route, or by following the link from the login redirect.
