@@ -1,6 +1,5 @@
 class InspectionController < ApplicationController
 
-
   get '/inspections/new' do
     check_logged_in
     #this pseudo redirect brings the user to a page to select the element
@@ -28,6 +27,7 @@ class InspectionController < ApplicationController
     end
 
     inspection.element = Element.find_by_slug(params[:element])
+
     inspection.user = current_user
 
     #attempt to save, the date validation runs here
@@ -63,6 +63,9 @@ class InspectionController < ApplicationController
   patch '/inspections/:id' do
     inspection = Inspection.find(params[:id])
     details = params[:inspection]
+
+    #update the date and comments
+    #TODO can they remove the date? That should raise an error
     inspection.update(climb_date:details[:climb_date], comments:details[:comments])
 
     #update the climbs
@@ -73,7 +76,6 @@ class InspectionController < ApplicationController
       climb.update(number_of_climbs:climb_num.to_i)
     end
 
-binding.pry
     flash[:type] = "success"
     flash[:message] = ["Inspection successfully edited"]
 
