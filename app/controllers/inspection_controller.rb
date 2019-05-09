@@ -65,12 +65,11 @@ class InspectionController < ApplicationController
     details = params[:inspection]
 
     #update the date and comments
-    #TODO can they remove the date? That should raise an error
+    #TODO can they remove the date? That should raise an error if they can
     inspection.update(climb_date:details[:climb_date], comments:details[:comments])
 
     #update the climbs
     details[:climbs].each do |rope_id, climb_num|
-      binding.pry
       climb = inspection.climbs.detect {|climb| climb.rope_id == rope_id.to_i}
       climb_num = 0 if climb_num == nil
       climb.update(number_of_climbs:climb_num.to_i)
