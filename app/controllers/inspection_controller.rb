@@ -1,5 +1,10 @@
 class InspectionController < ApplicationController
 
+  get '/inspections' do
+    @inspections = Inspection.all
+    erb :'/inspections/index'
+  end
+
   get '/inspections/new' do
     check_logged_in
     #this pseudo redirect brings the user to a page to select the element
@@ -9,6 +14,7 @@ class InspectionController < ApplicationController
 
   # this is the "real" /inspections/new, the upper one lets the user select an element
   # which populates the new form with the rope names
+  # TODO pass id instead of slug
   get '/inspections/new/:element_slug' do
     check_logged_in
 
@@ -26,6 +32,7 @@ class InspectionController < ApplicationController
       inspection.climbs << Climb.create(number_of_climbs:climb_num, rope_id:rope_id, inspection_id:inspection.id)
     end
 
+    # TODO use id instead of slug
     inspection.element = Element.find_by_slug(params[:element])
 
     inspection.user = current_user
@@ -39,10 +46,11 @@ class InspectionController < ApplicationController
     else
       #redirect back to the 'new' page with an error
       flash[:type] = "error"
-      flash[:message] = []
+      all_errors = []
       inspection.errors.messages.each do |attr, error_message|
-        flash[:message] << error_message[0]
+        all_errors << error_message[0]
       end
+      flash[:message] = all_errors
 
       redirect "/inspections/new/#{params[:element]}"
     end
@@ -50,18 +58,23 @@ class InspectionController < ApplicationController
 
   get '/inspections/:id/edit' do
     #check if the user is the owner of the inspection
-    if current_user == Inspection.find(params[:id]).user
-      @inspection = Inspection.find(params[:id])
-      erb :'/inspections/edit'
-    else
-      flash[:type] = "error"
-      flash[:message] = "You must be signed in as that inspections' creator to view edit it"
-      redirect '/'
-    end
+    # TODO keep changing these checks
+    @inspection = Inspection.find(params[:id])
+    check_owner(@inspection)
+
+    erb :'/inspections/edit'
   end
 
   patch '/inspections/:id' do
     inspection = Inspection.find(params[:id])
+
+    #check if the user is the owner of the inspection
+    if current_user != inspection.user
+      flash[:type] = "error"
+      flash[:message] = ["You must be signed in as that inspections' creator to view edit it"]
+      redirect '/'
+    end
+
     details = params[:inspection]
 
     #update the date and comments
@@ -83,6 +96,13 @@ class InspectionController < ApplicationController
 
   delete '/inspections/:id' do
     inspection = Inspection.find(params[:id])
+
+    if current_user != inspection.user
+      flash[:type] = "error"
+      flash[:message] = ["You must be signed in as that inspections' creator to view edit it"]
+      redirect '/'
+    end
+
     #destroy each climb associated with the inspection before destroying itself
     inspection.climbs.each do |climb|
       climb.destroy

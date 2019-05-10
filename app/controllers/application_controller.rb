@@ -24,7 +24,9 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
+
     def current_user
+      # TODO Ruby memoization
       User.find(session[:user_id])
     end
 
@@ -35,6 +37,14 @@ class ApplicationController < Sinatra::Base
         flash[:type] = "error"
         flash[:message] = ["You must be logged in to view that page"]
         redirect '/login'
+      end
+    end
+
+    def check_owner(object)
+      if current_user != object.user
+        flash[:type] = "error"
+        flash[:message] = ["You must be signed in as the owner to view or edit it"]
+        redirect '/'
       end
     end
   end

@@ -1,1 +1,5 @@
-<!-- view all inspections? -->
+<ul>
+  <% @inspections.each do |inspection| %>
+    <li><%= inspection.climb_date %>, created by <%= inspection.user.fullname %></li>
+  <% end %>
+</ul>
