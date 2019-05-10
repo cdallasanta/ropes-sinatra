@@ -7,6 +7,7 @@ class UserController < ApplicationController
     end
   end
 
+  #view the user's page of activity, currently just their inspections
   get '/users/:id' do
     if current_user == User.find(params[:id])
       erb :'/users/show'
@@ -20,14 +21,11 @@ class UserController < ApplicationController
   post '/users' do
     user = User.new(params)
 
-    # if successful, move to homepage, otherwise, try again
-    # with errors displayed
+    # if successful, move to homepage, otherwise, try again with errors displayed
     if user.save && user.username != ""
       session[:user_id] = user.id
       redirect '/'
     else
-      # these flash error messages don't work, no one knows why
-      # the redirect still works though
       flash[:type] = "error"
       all_errors = []
       user.errors.messages.each do |attr, error_message|
@@ -50,8 +48,7 @@ class UserController < ApplicationController
   post '/login' do
     user = User.find_by(username:params[:username])
 
-    # these flash error messages don't work, no one knows why
-    # the redirect still works though
+    #displays errors for wrong username or password and redirects to login page
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect '/'
