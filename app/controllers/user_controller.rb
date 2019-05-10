@@ -7,7 +7,7 @@ class UserController < ApplicationController
     end
   end
 
-  #view the user's page of activity, currently just their inspections
+  #view the user's page of activity, which is currently just their inspections
   get '/users/:id' do
     if current_user == User.find(params[:id])
       erb :'/users/show'

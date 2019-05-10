@@ -1,12 +1,11 @@
 class RopesController < ApplicationController
   # this route looks like a patch, but it actually "deletes" the rope,
-  # but persists its data so a future admin can still access
-  # retired ropes
+  # but persists its data so a future admin can still access retired ropes
   patch '/ropes/:id' do
     check_logged_in
 
     rope = Rope.find(params[:id])
-    # grab on to the element for creating a new rope by putting it in the cookie
+    # grab on to the element for creating a new rope by putting it in the session
     # and dissasociate this rope from the element
     session[:element] = rope.element
     rope.update(element:nil)
@@ -27,14 +26,14 @@ class RopesController < ApplicationController
     rope.pcord_color = params[:pcord_color]
 
     if rope.save
-      # if successful, forget the element and move on
+      # if successful, forget the element stored in the session and move on
       session[:element] = nil
 
       flash[:type] = "success"
       flash[:message] = ["Rope created successfully"]
       redirect '/elements'
     else
-      # ropes must have a primary and pcod color
+      # ropes must have a primary and pcord color
       flash[:type] = "error"
       all_errors = []
       rope.errors.messages.each do |attr, error_message|
