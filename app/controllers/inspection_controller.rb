@@ -28,7 +28,7 @@ class InspectionController < ApplicationController
 
     #create a Climb object for each rope that was used, associating it with the rope
     details[:climbs].each do |rope_id, climb_num|
-      climb_num = 0 if climb_num == nil
+      climb_num = 0 if climb_num == ""
       inspection.climbs << Climb.create(number_of_climbs:climb_num, rope_id:rope_id, inspection_id:inspection.id)
     end
 
