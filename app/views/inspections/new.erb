@@ -1,7 +1,7 @@
 <h1><%= @element.name %>'s new inspection</h1>
 
 <form action="/inspections" method="post">
-  <input type="hidden" name="element" value="<%= @element.slug %>">
+  <input type="hidden" name="element_id" value="<%= @element.id %>">
 
   <label for="inspection[climb_date]">Inspection Date:</label>
   <input type="date" name="inspection[climb_date]">

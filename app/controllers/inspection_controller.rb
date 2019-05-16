@@ -15,10 +15,10 @@ class InspectionController < ApplicationController
   # this is the "real" /inspections/new, the upper one lets the user select an element
   # which populates the new form with the rope names
   # TODO pass id instead of slug
-  get '/inspections/new/:element_slug' do
+  get '/inspections/new/:element_id' do
     check_logged_in
 
-    @element = Element.find_by_slug(params[:element_slug])
+    @element = Element.find_by_slug(params[:element_id])
     erb :'/inspections/new'
   end
 
@@ -32,8 +32,7 @@ class InspectionController < ApplicationController
       inspection.climbs << Climb.create(number_of_climbs:climb_num, rope_id:rope_id, inspection_id:inspection.id)
     end
 
-    # TODO use id instead of slug
-    inspection.element = Element.find_by_slug(params[:element])
+    inspection.element = Element.find(params[:element_id])
 
     inspection.user = current_user
 

@@ -2,7 +2,7 @@
 <h3>Select the element:</h3>
 <ul>
   <% @elements.each do |element| %>
-    <li><a href="/inspections/new/<%= element.slug %>"><%= element.name %></a></li>
+    <li><a href="/inspections/new/<%= element.id %>"><%= element.name %></a></li>
   <% end %>
 </ul>
 
