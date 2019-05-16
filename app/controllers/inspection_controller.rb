@@ -14,7 +14,6 @@ class InspectionController < ApplicationController
 
   # this is the "real" /inspections/new, the upper one lets the user select an element
   # which populates the new form with the rope names
-  # TODO pass id instead of slug
   get '/inspections/new/:element_id' do
     check_logged_in
 
@@ -57,7 +56,6 @@ class InspectionController < ApplicationController
 
   get '/inspections/:id/edit' do
     #check if the user is the owner of the inspection
-    # TODO keep changing these checks
     @inspection = Inspection.find(params[:id])
     check_owner(@inspection)
 
@@ -65,14 +63,9 @@ class InspectionController < ApplicationController
   end
 
   patch '/inspections/:id' do
-    inspection = Inspection.find(params[:id])
-
     #check if the user is the owner of the inspection
-    if current_user != inspection.user
-      flash[:type] = "error"
-      flash[:message] = ["You must be signed in as that inspections' creator to view edit it"]
-      redirect '/'
-    end
+    inspection = Inspection.find(params[:id])
+    check_owner(inspection)
 
     details = params[:inspection]
 
@@ -94,13 +87,9 @@ class InspectionController < ApplicationController
   end
 
   delete '/inspections/:id' do
+    #check if the user is the owner of the inspection
     inspection = Inspection.find(params[:id])
-
-    if current_user != inspection.user
-      flash[:type] = "error"
-      flash[:message] = ["You must be signed in as that inspections' creator to view edit it"]
-      redirect '/'
-    end
+    check_owner(inspection)
 
     #destroy each climb associated with the inspection before destroying itself
     inspection.climbs.each do |climb|
